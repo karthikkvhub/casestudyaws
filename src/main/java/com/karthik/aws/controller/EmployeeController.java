@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.karthik.aws.Execption.Employeeexists;
 import com.karthik.aws.entity.Employee;
 import com.karthik.aws.service.ComparatorSort;
 import com.karthik.aws.service.EmployeeService;
@@ -47,10 +48,10 @@ public class EmployeeController {
     @PutMapping("/Employees/{id}")
     public Employee
     updateemployee(@RequestBody Employee Employee,
-                     @PathVariable("id") Integer Id)
+                     @PathVariable("id") Integer Id, @PathVariable double salary)
     {
         return EmployeeService.updateEmployee(
-            Employee, Id);
+            Id , salary);
     }
  
     

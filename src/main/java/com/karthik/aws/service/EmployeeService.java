@@ -27,15 +27,11 @@ public class EmployeeService {
 	public Optional<Employee> getEmployeeById(Integer id) {
 		return repo.findById(id);
 	}
-    public Employee updateEmployee(Employee Employee, Integer id) {
-    	Optional<Employee> EmployeeDb = this.repo.findById(id);
-    	Employee EmployeeUpdate = EmployeeDb.get();
-    	EmployeeUpdate.setId(EmployeeUpdate.getId());
-    	EmployeeUpdate.setName(Employee.getName());
-    	EmployeeUpdate.setSalary(Employee.getSalary());
-    	EmployeeUpdate.setDesignation(Employee.getDesignation());
-    	repo.save(Employee);
-    	return EmployeeUpdate;
+	public Employee updateEmployee(int id, double salary) {
+    	Employee existingemployee = repo.findById(id).orElse(null);
+    	existingemployee.setSalary(salary);
+    	return repo.save(existingemployee);
+
     }
 	public void deleteEmployee(Integer id) {
 		repo.deleteById(id);
